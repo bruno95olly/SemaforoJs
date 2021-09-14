@@ -1,16 +1,20 @@
 const sinal = document.getElementById("sinal")
-let idTimeout
+let idInterval
 
 function sinalVermelho(){
     sinal.src = "img/vermelho.png"
+    pararPiscar()
 }
 
 function sinalAmarelo(){
     sinal.src = "img/amarelo.png"
+    pararPiscar()
 }
 
 function sinalVerde(){
     sinal.src = "img/verde.png"
+    pararPiscar()
+
 }
 
 
@@ -28,6 +32,36 @@ function automaticoTimeout(){
     
 }
 
+function pararPiscar(){
+    clearInterval (idInterval)
+}
+
+function trocarSinal(){
+    if(sinal.src.includes("desligado")){
+        sinal.src =  "img/vermelho.png"
+    }
+    else if(sinal.src.includes("vermelho")){
+        sinal.src =  "img/amarelo.png"
+    }
+    else if(sinal.src.includes("amarelo")){
+        sinal.src =  "img/verde.png"
+    }
+    else{
+        sinal.src =  "img/vermelho.png"
+    }
+}
+
+function automaticoInterval(){
+    const piscar = document.getElementById("automatico")
+    if(piscar.textContent == "Automatico"){
+        idInterval = setInterval (trocarSinal, 1000)
+        piscar.textContent = "Parar"
+    }
+    else{
+        pararPiscar()
+        piscar.textContent = "Automatico"
+    }
+}
 
 
 
@@ -44,5 +78,5 @@ document.getElementById("verde")
     .addEventListener("click", sinalVerde)
 
 document.getElementById("automatico")
-    .addEventListener("click", automaticoTimeout)
+    .addEventListener("click", automaticoInterval)
 

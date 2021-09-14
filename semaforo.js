@@ -14,14 +14,9 @@ function sinalVerde(){
 }
 
 
-function pararPiscar(){
-    clearTimeout(idTimeout)
-}
-
 function automaticoTimeout(){
     var interval = 0
     var contador = 0
-
     while(contador<10000){
         interval += 800; setTimeout(sinalVermelho, interval);
         interval += 800; setTimeout(sinalAmarelo, interval);
